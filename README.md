@@ -138,7 +138,7 @@ The following endpoints are available in the API:
         "user": 1,
         "title": "title",
         "content": "content"
-    }
+     }
      ```
 
 5. **Endpoint 5**
