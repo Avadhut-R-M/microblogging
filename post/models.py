@@ -16,3 +16,12 @@ class Post(models.Model):
             self.created = timezone.now()
         self.updated = timezone.now()
         return super(Post, self).save(*argss, **kwargs)
+
+
+class PostLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_likes")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="likes")
+    like = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ("user", "post")

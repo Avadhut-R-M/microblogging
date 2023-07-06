@@ -205,6 +205,148 @@ The following endpoints are available in the API:
       }
      ```
 
+8. **Endpoint 8**
+   - URL: `http://0.0.0.0:8000/posts/<id>/like_post`
+   - Method: `GET`
+   - Description: This endpoint used add like to post.
+   - Request Format: Json
+   - Request Example:
+     ```json
+     {
+       "user": 1,
+       "like": "true"
+     }
+     ```
+     ```json
+     {
+       "user": 1,
+       "like": "false"
+     }
+     ```
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      {
+       "Data": "Post Disliked"
+      }
+     ```
+     ```json
+      {
+       "Data": "Post Liked"
+      }
+     ```
+
+9. **Endpoint 9**
+   - URL: `http://0.0.0.0:8000/posts/<id>/list_liked_by`
+   - Method: `GET`
+   - Description: This endpoint for listing users liked the post.
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      [
+         {
+            "id": 2,
+            "username": "test1",
+            "email": "user2@mail.com"
+         },
+         {
+            "id": 3,
+            "username": "test2",
+            "email": "user3@mail.com"
+         }
+      ]
+     ```
+
+10. **Endpoint 10**
+   - URL: `http://0.0.0.0:8000/user/<id>/add_follower`
+   - Method: `GET`
+   - Description: This endpoint used add follower.
+   - Request Format: Json
+   - Request Example:
+     ```json
+     {
+       "follower": 2
+     }
+     ```
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      {
+         "Following": {
+            "follower": 1,
+            "following": 2
+         }
+      }
+     ```
+
+12. **Endpoint 12**
+   - URL: `http://0.0.0.0:8000/user/<id>/list_follower`
+   - Method: `GET`
+   - Description: This endpoint for listing followers.
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      [
+         {
+            "id": 2,
+            "username": "test1",
+            "email": "user2@mail.com"
+         },
+         {
+            "id": 3,
+            "username": "test2",
+            "email": "user3@mail.com"
+         }
+      ]
+     ```
+
+13. **Endpoint 13**
+   - URL: `http://0.0.0.0:8000/user/<id>/list_following`
+   - Method: `GET`
+   - Description: This endpoint for listing who user following.
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      [
+         {
+            "id": 2,
+            "username": "test1",
+            "email": "user2@mail.com"
+         },
+         {
+            "id": 3,
+            "username": "test2",
+            "email": "user3@mail.com"
+         }
+      ]
+     ```
+
+14. **Endpoint 14**
+   - URL: `http://0.0.0.0:8000/user/<id>/list_liked_posts`
+   - Method: `GET`
+   - Description: This endpoint for listing posts liked by user
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      [
+        {   "id": 1,
+            "created": "05-07-2023 15:35",
+            "updated": "05-07-2023 15:35",
+            "user": 1,
+            "title": "title1",
+            "content": "content1"
+        },
+        {
+            "id": 2,
+            "created": "05-07-2023 15:40",
+            "updated": "05-07-2023 15:40",
+            "user": 1,
+            "title": "title2",
+            "content": "content2"
+        }
+     ]
+     ```
+
 Error Codes
 -----------
 The API may return the following error codes:

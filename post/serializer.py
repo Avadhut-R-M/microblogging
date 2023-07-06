@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post
+from .models import Post, PostLike
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -15,3 +15,21 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ("id", "created", "updated", "user", "title", "content")
         read_only_fields = ("id",)
+
+
+class PostDetailSerializer(PostSerializer):
+    post_likes = serializers.SerializerMethodField()
+
+    class Meta(PostSerializer.Meta):
+        fields = PostSerializer.Meta.fields + ('post_likes',)
+
+    def get_post_likes(self, instance):
+        try:
+            return instance.likes.count()
+        except:
+            return 0
+        
+class PostLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostLike
+        fields = ('user', 'post', 'like')

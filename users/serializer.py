@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-
+from .models import UserFollow
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,3 +38,30 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data.get("password", None),
         )
         return user
+
+
+class UserDetailSerializer(UserSerializer):
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+
+    class Meta(UserSerializer.Meta):
+        fields = UserSerializer.Meta.fields + ("followers_count", "following_count")
+
+    def get_followers_count(self, instance):
+        try:
+            return instance.following.count()
+        except Exception as e:
+            print(e)
+            return 0
+        
+    def get_following_count(self, instance):
+        try:
+            return instance.followers.count()
+        except Exception as e:
+            print(e)
+            return 0
+
+class UserFollowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserFollow
+        fields = ('follower', 'following')
