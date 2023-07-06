@@ -74,17 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'microblogging.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+# database of postgresql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -139,6 +129,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# caching for data with defalut with redis
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',

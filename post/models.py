@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="posts", on_delete=models.CASCADE)
     created = models.DateTimeField()
     updated = models.DateTimeField()
     title = models.CharField(max_length=50)

@@ -16,6 +16,16 @@
    ```SQL
    GRANT ALL PRIVILEGES ON DATABASE test TO test;
    ```
+6. Install Redis if not installed on system.
+7. Start redis server 
+   1. for linux
+      ```shell
+      sudo systemctl start redis-server.service
+      ```
+   2. for mac
+      ```shell
+      brew services start redis
+      ```
 
 
 ## Setting Up project

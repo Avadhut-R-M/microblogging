@@ -7,10 +7,17 @@ from .serializer import UserSerializer
 from rest_framework import viewsets, mixins
 
 
-class UserViewSet(mixins.CreateModelMixin, 
-                   mixins.RetrieveModelMixin, 
-                   mixins.UpdateModelMixin,
-                   viewsets.GenericViewSet):
+class UserViewSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    This viewset is for user model
+    This viewset supports create, update, retrive methods only.
+    """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend]

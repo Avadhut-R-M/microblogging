@@ -11,10 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def validate(self, attrs):
-        if 'email' not in attrs:
+        if "email" not in attrs:
             raise serializers.ValidationError("Email field is required.")
         return attrs
-    
+
     def validate_email(self, value):
         # Check if the email is a valid email address
         try:
