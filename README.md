@@ -1,24 +1,24 @@
-## Create DB for project
+## Create DB for the project
 1. Install PostgreSQL.
-2. Open PostgreSQL command line with command
+2. Open the PostgreSQL command line with a command
    ```shell
    psql postgres
    ```
-3. Create user
+3. Create a user
    ```SQL
    CREATE USER test WITH PASSWORD 'test';
    ```
-4. Create Database
+4. Create a Database
    ```SQL
    CREATE DATABASE test OWNER test;
    ```
-5. Grant permission to user
+5. Grant permission to the user
    ```SQL
    GRANT ALL PRIVILEGES ON DATABASE test TO test;
    ```
-6. Install Redis if not installed on system.
-7. Start redis server 
-   1. for linux
+6. Install Redis if not installed on the system.
+7. Start the Redis server 
+   1. for Linux
       ```shell
       sudo systemctl start redis-server.service
       ```
@@ -29,13 +29,13 @@
 
 
 ## Setting Up project
-1. Install Python 3.10 if not available on device
+1. Install Python 3.10 if not available on the device
 2. cd in the project repo
-3. Create virtual env with python 3.10 with command
+3. Create virtual env with Python 3.10 with the command
    ```shell
    python3.10 -m venv venv
    ```
-4. Activate virtual env with command  
+4. Activate virtual env with the command  
    ```shell
    source venv/bin/activate
    ```
@@ -43,11 +43,11 @@
     ```shell
     pip install -r requirements.txt
     ```
-6.  Migreate models
+6.  Migrate models
     ```shell
     python manage.py migrate
     ```
-7.  Run Project with
+7.  Run the Project with
     ```shell
     python manage.py runserver 0.0.0.0:8000
     ```
@@ -62,7 +62,7 @@ API Documentation
 
 Introduction
 ------------
-This document provides detailed information about the endpoints, request/response format, and error codes of the  API.
+This document provides detailed information about the endpoints, request/response format, and API error codes.
 
 Endpoints
 ---------
@@ -71,8 +71,8 @@ The following endpoints are available in the API:
 1. **Endpoint 1**
    - URL: `http://0.0.0.0:8000/user/`
    - Method: `POST`
-   - Description: This endpoint used to add new user.
-   - Request Format: Json
+   - Description: This endpoint is used to add new users.
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -94,7 +94,7 @@ The following endpoints are available in the API:
 2. **Endpoint 2**
    - URL: `http://0.0.0.0:8000/user/<id>`
    - Method: `GET`
-   - Description: Get info of a user.
+   - Description: Get info about the user.
    - Response Format: JSON
    - Response Example:
      ```json
@@ -109,7 +109,7 @@ The following endpoints are available in the API:
    - URL: `http://0.0.0.0:8000/user/<id>/`
    - Method: `PATCH`
    - Description: Update info of a user.
-   - Request Format: Json
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -129,8 +129,8 @@ The following endpoints are available in the API:
 4. **Endpoint 4**
    - URL: `http://0.0.0.0:8000/posts/`
    - Method: `POST`
-   - Description: This endpoint used to add new post.
-   - Request Format: Json
+   - Description: This endpoint is used to add new posts.
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -185,8 +185,8 @@ The following endpoints are available in the API:
 7. **Endpoint 7**
    - URL: `http://0.0.0.0:8000/posts/<id>/`
    - Method: `PATCH`
-   - Description: This endpoint used to edit a post.
-   - Request Format: Json
+   - Description: This endpoint is used to edit a post.
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -208,8 +208,8 @@ The following endpoints are available in the API:
 8. **Endpoint 8**
    - URL: `http://0.0.0.0:8000/posts/<id>/like_post`
    - Method: `GET`
-   - Description: This endpoint used add like to post.
-   - Request Format: Json
+   - Description: This endpoint is used to add like to a post.
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -239,7 +239,7 @@ The following endpoints are available in the API:
 9. **Endpoint 9**
    - URL: `http://0.0.0.0:8000/posts/<id>/list_liked_by`
    - Method: `GET`
-   - Description: This endpoint for listing users liked the post.
+   - Description: This endpoint is for listing users who liked the post.
    - Response Format: JSON
    - Response Example:
      ```json
@@ -260,8 +260,8 @@ The following endpoints are available in the API:
 10. **Endpoint 10**
    - URL: `http://0.0.0.0:8000/user/<id>/add_follower`
    - Method: `GET`
-   - Description: This endpoint used add follower.
-   - Request Format: Json
+   - Description: This endpoint is used to add followers.
+   - Request Format: JSON
    - Request Example:
      ```json
      {
@@ -279,10 +279,31 @@ The following endpoints are available in the API:
       }
      ```
 
-12. **Endpoint 12**
+11. **Endpoint 11**
    - URL: `http://0.0.0.0:8000/user/<id>/list_follower`
    - Method: `GET`
-   - Description: This endpoint for listing followers.
+   - Description: This endpoint is for listing followers.
+   - Response Format: JSON
+   - Response Example:
+     ```json
+      [
+         {
+            "id": 2,
+            "username": "test1",
+            "email": "user2@mail.com"
+         },
+         {
+            "id": 3,
+            "username": "test2",
+            "email": "user3@mail.com"
+         }
+      ]
+     ```
+
+12. **Endpoint 12**
+   - URL: `http://0.0.0.0:8000/user/<id>/list_following`
+   - Method: `GET`
+   - Description: This endpoint is for listing who the user is following.
    - Response Format: JSON
    - Response Example:
      ```json
@@ -301,30 +322,9 @@ The following endpoints are available in the API:
      ```
 
 13. **Endpoint 13**
-   - URL: `http://0.0.0.0:8000/user/<id>/list_following`
-   - Method: `GET`
-   - Description: This endpoint for listing who user following.
-   - Response Format: JSON
-   - Response Example:
-     ```json
-      [
-         {
-            "id": 2,
-            "username": "test1",
-            "email": "user2@mail.com"
-         },
-         {
-            "id": 3,
-            "username": "test2",
-            "email": "user3@mail.com"
-         }
-      ]
-     ```
-
-14. **Endpoint 14**
    - URL: `http://0.0.0.0:8000/user/<id>/list_liked_posts`
    - Method: `GET`
-   - Description: This endpoint for listing posts liked by user
+   - Description: This endpoint is for listing posts liked by the user
    - Response Format: JSON
    - Response Example:
      ```json
@@ -351,6 +351,6 @@ Error Codes
 -----------
 The API may return the following error codes:
 
-- `400 Bad Request`: The request is invalid or missing required parameters.
+- `400 Bad Request`: The request is invalid or missing the required parameters.
 - `404 Not Found`: The requested resource does not exist.
 - `500 Internal Server Error`: An unexpected error occurred on the server.
